@@ -5,6 +5,7 @@ import { getUserInfo } from "@/services/auth.service";
 import { LogIn } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
+import { GiHamburgerMenu } from "react-icons/gi";
 import { useDispatch } from "react-redux";
 import { MainNav } from "./main-nav";
 import Profile from "./profile";
@@ -22,7 +23,7 @@ const RootNavBar = () => {
   console.log(role);
 
   return (
-    <nav className="border-b">
+    <nav className="border-b lg:px-16 xl:px-20">
       <UseModal title="" description="">
         {toggleLogin === "sing-in" ? (
           <LoginPage setToggleLogin={setToggleLogin} />
@@ -37,11 +38,12 @@ const RootNavBar = () => {
           <h1 className="text-3xl font-bold">fQuiz</h1>
         </Link>
 
-        <div className=" pl-6 w-72 ">
+        <div className=" pl-6 w-72 hidden md:flex">
           <Input className="h-8 rounded-full " placeholder="Find a quiz " />
         </div>
-
-        <MainNav className="mx-6" />
+        <div className=" hidden md:block">
+          <MainNav className="mx-6" />
+        </div>
 
         <div className="ml-auto flex items-center space-x-4">
           {role ? (
@@ -61,6 +63,9 @@ const RootNavBar = () => {
             </Button>
             // </Link>
           )}
+        </div>
+        <div className="flex md:hidden px-2">
+          <GiHamburgerMenu />
         </div>
       </div>
       {/* </Container> */}
