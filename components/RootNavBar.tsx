@@ -12,6 +12,7 @@ import UseModal from "./reusable-ui/use-modal";
 import SingUp from "./ui/auth/sing-up";
 import LoginPage from "./ui/auth/song-in";
 import { Button } from "./ui/button";
+import { Input } from "./ui/input";
 
 const RootNavBar = () => {
   const { role }: any = getUserInfo();
@@ -36,8 +37,8 @@ const RootNavBar = () => {
           <h1 className="text-3xl font-bold">fQuiz</h1>
         </Link>
 
-        <div className="mx-6">
-          <input type="text" placeholder="Find a quiz" />
+        <div className=" pl-6 w-72 ">
+          <Input className="h-8 rounded-full " placeholder="Find a quiz " />
         </div>
 
         <MainNav className="mx-6" />
