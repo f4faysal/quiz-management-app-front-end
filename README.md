@@ -1,59 +1,58 @@
-# Quiz Management App
+# fQuiz - Quiz Management App
 
 ## Overview
 
-A Quiz Management App designed for admins to create quizzes, track performer scores, and offer an interactive quiz experience. Built with Next.js, Typescript, Redux, Express, PostgreSQL, and Prisma for seamless integration.
+**fQuiz** is a comprehensive Quiz Management App designed to empower admins in creating quizzes, tracking performer scores, and delivering an engaging quiz experience. Crafted with Next.js, Typescript, Redux, Express, PostgreSQL, and Prisma for seamless integration.
 
 ## Features
 
 - **User Auth:**
   - Roles: admin, performer.
-  - Sign up, log in, and account management.
+  - Seamless sign-up, log-in, and account management.
 
 - **Quiz Management:**
-  - Admins create/edit/delete quizzes.
-  - Categorize quizzes (e.g., frontend, fullstack).
-  - Single and multiple-choice questions.
+  - Admins create, edit, and delete quizzes.
+  - Intuitive quiz categorization (e.g., frontend, fullstack).
+  - Support for both single and multiple-choice questions.
 
 - **Quiz Taking:**
-  - Performers choose a category, answer 10 random questions.
-  - Immediate feedback and score calculation.
-  - Leaderboard for top performers.
+  - Performers select a category, answer 10 random questions.
+  - Instant feedback and real-time score calculation.
+  - Leaderboard showcasing top performers.
 
 - **Score Tracking:**
-  - Store and display user scores.
+  - Store and display user scores efficiently.
 
 - **Database:**
-  - PostgreSQL with Prisma ORM.
+  - Utilizes PostgreSQL with Prisma ORM for optimal data handling.
 
 - **Error Handling:**
-  - Robust mechanisms for smooth functionality.
+  - Robust mechanisms ensure a smooth user experience.
 
 - **UI:**
-  - Next.js and Redux for a user-friendly interface.
+  - Next.js and Redux contribute to a user-friendly interface.
 
 ## Setup
 
-1. Clone repo.
+1. Clone the repo.
 2. Install dependencies.
 3. Configure PostgreSQL and Prisma.
-4. Run the app.
+4. Run the app seamlessly.
 
 ## Usage
 
-1. Admins log in to manage quizzes.
-2. Performers sign up/log in to take quizzes.
-3. Create, manage, and take quizzes effortlessly.
+1. Admins log in to effortlessly manage quizzes.
+2. Performers sign up or log in for a seamless quiz-taking experience.
+3. Create, manage, and partake in quizzes with ease.
 
 ## Contributing
 
-1. Fork the repo.
-2. Create a branch for your changes.
-3. Submit a pull request.
+1. Fork the repository.
+2. Develop your feature in a dedicated branch.
+3. Submit a pull request for seamless integration.
 
 ## License
 
 MIT License - [Details](LICENSE)
 
-Feel free to open issues for feedback or contributions. Happy quizzing!
-
+Feel free to open issues for feedback or contribute to enhancing the **fQuiz** experience. Happy quizzing!
