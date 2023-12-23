@@ -17,7 +17,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { useUpdateCourseMutation } from "@/redux/api/courseApi";
+import { useUpdateQuizMutation } from "@/redux/api/quizApi";
 
 interface TitleFormProps {
   initialData: {
@@ -35,7 +35,7 @@ const formSchema = z.object({
 export const TitleForm = ({ initialData, courseId }: TitleFormProps) => {
   const [isEditing, setIsEditing] = useState(false);
 
-  const [updateCourse] = useUpdateCourseMutation();
+  const [updateQuiz] = useUpdateQuizMutation();
 
   const toggleEdit = () => setIsEditing((current) => !current);
 
@@ -50,8 +50,8 @@ export const TitleForm = ({ initialData, courseId }: TitleFormProps) => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      await updateCourse({ id: courseId, data: values });
-      toast.success("Course updated");
+      await updateQuiz({ id: courseId, data: values });
+      toast.success("Quizzes updated");
       toggleEdit();
       router.refresh();
     } catch {
@@ -62,7 +62,7 @@ export const TitleForm = ({ initialData, courseId }: TitleFormProps) => {
   return (
     <div className="mt-6 border bg-slate-100 rounded-md p-4">
       <div className="font-medium flex items-center justify-between">
-        Course title
+        Quiz title
         <Button onClick={toggleEdit} variant="ghost">
           {isEditing ? (
             <>Cancel</>

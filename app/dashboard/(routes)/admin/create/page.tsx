@@ -1,6 +1,4 @@
 "use client";
-
-import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
@@ -18,32 +16,39 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-
+import { useCreateQuizMutation } from "@/redux/api/quizApi";
 import { getUserInfo } from "@/services/auth.service";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 const formSchema = z.object({
   title: z.string().min(1, {
     message: "Title is required",
   }),
-  userId: z.string().optional(),
+  createdById: z.string(),
 });
 
 const CreatePage = () => {
   const { userId }: any = getUserInfo();
   const router = useRouter();
+
+  const [CreateQuiz] = useCreateQuizMutation();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       title: "",
+      createdById: "",
     },
   });
 
   const { isSubmitting, isValid } = form.formState;
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    values.createdById = userId;
     try {
-      console.log(values);
-      // router.push(`/dashboard/teacher/courses/${response?.data?.id}`);
+      const response = await CreateQuiz(values).unwrap();
+      console.log(response);
+      router.push(`/dashboard/admin/quiz/${response?.id}`);
       toast.success("Course created");
     } catch {
       toast.error("Something went wrong");

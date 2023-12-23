@@ -14,7 +14,7 @@ export const quizApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: [tagTypes.quiz],
     }),
-    // quizs
+    // quizzes
     quizzes: build.query({
       query: () => ({
         url: `${quiz_url}`,
@@ -39,10 +39,10 @@ export const quizApi = baseApi.injectEndpoints({
     }),
     // quiz quiz
     updateQuiz: build.mutation({
-      query: (paylod) => ({
-        url: `${quiz_url}/${paylod.id}`,
+      query: (payload) => ({
+        url: `${quiz_url}/${payload.id}`,
         method: "PATCH",
-        data: paylod.data,
+        data: payload.data,
       }),
       invalidatesTags: [tagTypes.quiz],
     }),
@@ -57,4 +57,10 @@ export const quizApi = baseApi.injectEndpoints({
   }),
 });
 
-export const {} = quizApi;
+export const {
+  useCreateQuizMutation,
+  useQuizzesQuery,
+  useQuizQuery,
+  useUpdateQuizMutation,
+  useDeleteQuizMutation,
+} = quizApi;

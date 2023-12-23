@@ -18,7 +18,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { cn } from "@/lib/utils";
-import { useUpdateCourseMutation } from "@/redux/api/courseApi";
+import { useUpdateQuizMutation } from "@/redux/api/quizApi";
 
 interface CategoryFormProps {
   initialData: any;
@@ -36,7 +36,7 @@ export const CategoryForm = ({
   options,
 }: CategoryFormProps) => {
   const [isEditing, setIsEditing] = useState(false);
-  const [updateCourse] = useUpdateCourseMutation();
+  const [updateQuiz] = useUpdateQuizMutation();
 
   const toggleEdit = () => setIsEditing((current) => !current);
 
@@ -53,7 +53,7 @@ export const CategoryForm = ({
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      await updateCourse({ id: courseId, data: values });
+      await updateQuiz({ id: courseId, data: values });
       toast.success("Course updated");
       toggleEdit();
       router.refresh();

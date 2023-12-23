@@ -8,7 +8,8 @@ import toast from "react-hot-toast";
 
 import { ConfirmModal } from "@/components/modals/confirm-modal";
 import { Button } from "@/components/ui/button";
-import { useUpdateCourseMutation } from "@/redux/api/courseApi";
+
+import { useUpdateQuizMutation } from "@/redux/api/quizApi";
 import { onClose, onOpen } from "@/redux/features/modal/modalSlice";
 import { useDispatch } from "react-redux";
 
@@ -21,7 +22,7 @@ interface ActionsProps {
 export const Actions = ({ disabled, courseId, isPublished }: ActionsProps) => {
   const router = useRouter();
 
-  const [updateCourse] = useUpdateCourseMutation();
+  const [updateCourse] = useUpdateQuizMutation();
 
   const dispatch = useDispatch();
 
