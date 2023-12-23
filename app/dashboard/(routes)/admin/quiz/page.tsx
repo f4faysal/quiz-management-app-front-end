@@ -2,14 +2,13 @@
 
 import { redirect } from "next/navigation";
 
-import { useCoursesQuery } from "@/redux/api/courseApi";
 import { getUserInfo } from "@/services/auth.service";
 import { columns } from "./_components/columns";
 import { DataTable } from "./_components/data-table";
 
 const CoursesPage = () => {
   const { userId }: any = getUserInfo();
-  const { data, isLoading } = useCoursesQuery({});
+  const { data, isLoading } = { data: [], isLoading: false }; // useCoursesQuery({
 
   if (!userId) {
     return redirect("/");

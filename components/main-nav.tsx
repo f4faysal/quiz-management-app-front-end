@@ -44,7 +44,7 @@ export function MainNav({
   const instanter = [
     ...performer,
     {
-      href: `/create-quiz`,
+      href: `/dashboard`,
       label: "Create Quiz",
       active: pathname === `/create-quiz`,
       icon: <BsPlusCircle />,

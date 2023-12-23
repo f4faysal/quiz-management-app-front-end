@@ -18,9 +18,8 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { formatPrice } from "@/lib/format";
+
 import { cn } from "@/lib/utils";
-import { useUpdateCourseMutation } from "@/redux/api/courseApi";
 
 interface PriceFormProps {
   initialData: any;
@@ -33,7 +32,7 @@ const formSchema = z.object({
 
 export const PriceForm = ({ initialData, courseId }: PriceFormProps) => {
   const [isEditing, setIsEditing] = useState(false);
-  const [updateCourse] = useUpdateCourseMutation();
+  // const [updateCourse] = useUpdateCourseMutation();
 
   const toggleEdit = () => setIsEditing((current) => !current);
 
@@ -51,7 +50,7 @@ export const PriceForm = ({ initialData, courseId }: PriceFormProps) => {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       // await axios.patch(`/api/courses/${courseId}`, values);
-      await updateCourse({ id: courseId, data: values });
+      // await updateCourse({ id: courseId, data: values });
       toast.success("Course updated");
       toggleEdit();
       router.refresh();
@@ -82,7 +81,7 @@ export const PriceForm = ({ initialData, courseId }: PriceFormProps) => {
             !initialData?.price && "text-slate-500 italic"
           )}
         >
-          {initialData?.price ? formatPrice(initialData?.price) : "No price"}
+          {/* {initialData?.price ? formatPrice(initialData?.price) : "No price"} */}
         </p>
       )}
       {isEditing && (

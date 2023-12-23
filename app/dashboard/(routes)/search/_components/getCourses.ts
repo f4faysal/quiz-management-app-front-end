@@ -1,8 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { useCategorysQuery } from "@/redux/api/categoryApi";
 
 const getCategorys = () => {
-  const { data, isLoading } = useCategorysQuery({});
+  const { data, isLoading } = { data: {}, isLoading: false };
 
   if (isLoading) return [];
 

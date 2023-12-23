@@ -6,7 +6,7 @@ import { Sidebar } from "./_components/sidebar";
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   const { role }: any = getUserInfo();
 
-  if (role !== "instructor") {
+  if (role !== "admin") {
     return (window.location.href = "/");
   }
 

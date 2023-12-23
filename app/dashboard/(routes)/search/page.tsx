@@ -5,10 +5,9 @@ import { redirect } from "next/navigation";
 import { SearchInput } from "@/components/search-input";
 
 import { CoursesList } from "@/components/courses-list";
-import { useCoursesQuery } from "@/redux/api/courseApi";
+
 import { getUserInfo } from "@/services/auth.service";
 import { Categories } from "./_components/categories";
-import getCategorys from "./_components/getCourses";
 
 interface SearchPageProps {
   searchParams: {
@@ -22,13 +21,13 @@ const SearchPage = ({ searchParams }: SearchPageProps) => {
 
   // const { data, isLoading } = useCategorysQuery({});
 
-  const { data, isLoading } = useCoursesQuery({});
+  const { data, isLoading } = { data: [], isLoading: false };
 
   if (!userId) {
     return redirect("/");
   }
 
-  const categories = getCategorys();
+  const categories = {};
 
   const publishedCourses = data?.filter((course: any) => course.isPublished);
 
@@ -57,7 +56,7 @@ const SearchPage = ({ searchParams }: SearchPageProps) => {
         <SearchInput />
       </div>
       <div className="p-6 space-y-4">
-        <Categories items={categories} />
+        <Categories items={[]} />
         <CoursesList items={courses} />
       </div>
     </>
