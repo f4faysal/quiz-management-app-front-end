@@ -53,6 +53,8 @@ const LoginPage = ({ setToggleLogin }: LoginPageProps) => {
     try {
       const res: any = await userSingIn(values);
 
+      console.log(res);
+
       if (res?.data?.accessToken) {
         dispatch(onClose());
         form.reset();

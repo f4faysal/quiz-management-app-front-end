@@ -3,10 +3,8 @@ import RootNavBar from "@/components/RootNavBar";
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="h-full">
-      <div className="">
-        <RootNavBar />
-      </div>
-      <main>{children}</main>
+      <RootNavBar />
+      <main className="p-1">{children}</main>
     </div>
   );
 };

@@ -10,8 +10,8 @@ import { useDispatch } from "react-redux";
 import { MainNav } from "./main-nav";
 import Profile from "./profile";
 import UseModal from "./reusable-ui/use-modal";
-import SingUp from "./ui/auth/sing-up";
-import LoginPage from "./ui/auth/song-in";
+import SingUp from "./auth/sing-up";
+import LoginPage from "./auth/song-in";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 
@@ -23,7 +23,7 @@ const RootNavBar = () => {
   console.log(role);
 
   return (
-    <nav className="border-b lg:px-16 xl:px-20">
+    <nav className="border-b lg:px-16 xl:px-20 sticky top-0">
       <UseModal title="" description="">
         {toggleLogin === "sing-in" ? (
           <LoginPage setToggleLogin={setToggleLogin} />
