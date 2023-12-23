@@ -20,6 +20,10 @@ import { Input } from "@/components/ui/input";
 
 import { cn } from "@/lib/utils";
 
+import {
+  useCreateQuizQuestionMutation,
+  useGetLastQuizQuestionsQuery,
+} from "@/redux/api/quizApi";
 import { ChaptersList } from "./chapters-list";
 
 interface ChaptersFormProps {
@@ -28,7 +32,8 @@ interface ChaptersFormProps {
 }
 
 const formSchema = z.object({
-  title: z.string().min(1),
+  text: z.string().min(1),
+  quizId: z.string().optional(),
   courseId: z.string().optional(),
   position: z.number().optional(),
 });
@@ -36,9 +41,14 @@ const formSchema = z.object({
 export const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
   const [isCreating, setIsCreating] = useState(false);
   const [isUpdating, setIsUpdating] = useState(false);
-  // const { data, isLoading } = useLastChapterQuery(courseId);
+
+  const { data, isLoading } = useGetLastQuizQuestionsQuery(initialData.id);
+
+  console.log(initialData);
+  console.log(data);
 
   // const [createchapter] = useCreatechapterMutation();
+  const [CreateQuizQuestion] = useCreateQuizQuestionMutation();
   // const [reorder] = useReorderMutation();
 
   const toggleCreating = () => {
@@ -50,18 +60,19 @@ export const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      title: "",
+      text: "",
     },
   });
 
   const { isSubmitting, isValid } = form.formState;
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    values.courseId = courseId;
-    // values.position = data;
+    values.quizId = initialData.id;
+    console.log(values);
     try {
-      // const res = await createchapter(values);
-      toast.success("Chapter created");
+      const res = await CreateQuizQuestion(values);
+      console.log(res);
+      toast.success("Chapter quizzes");
       toggleCreating();
       window.location.reload();
     } catch {
@@ -100,14 +111,14 @@ export const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
         </div>
       )}
       <div className="font-medium flex items-center justify-between">
-        Course chapters
+        Create questions
         <Button onClick={toggleCreating} variant="ghost">
           {isCreating ? (
             <>Cancel</>
           ) : (
             <>
               <PlusCircle className="h-4 w-4 mr-2" />
-              Add a chapter
+              Add questions
             </>
           )}
         </Button>
@@ -120,7 +131,7 @@ export const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
           >
             <FormField
               control={form.control}
-              name="title"
+              name="text"
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
@@ -147,17 +158,17 @@ export const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
             !initialData?.chapters?.length && "text-slate-500 italic"
           )}
         >
-          {!initialData?.chapters?.length && "No chapters"}
+          {!initialData?.chapters?.length && "No questions added yet"}
           <ChaptersList
             onEdit={onEdit}
             onReorder={onReorder}
-            items={initialData?.chapters || []}
+            items={initialData?.questions || []}
           />
         </div>
       )}
       {!isCreating && (
         <p className="text-xs text-muted-foreground mt-4">
-          Drag and drop to reorder the chapters
+          Drag and drop to reorder the questions
         </p>
       )}
     </div>

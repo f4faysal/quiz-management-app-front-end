@@ -54,6 +54,36 @@ export const quizApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: [tagTypes.quiz],
     }),
+
+    // quiz questions
+    createQuizQuestion: build.mutation({
+      query: (payload) => ({
+        url: `${quiz_url}/question`,
+        method: "POST",
+        data: payload,
+      }),
+      invalidatesTags: [tagTypes.quiz],
+    }),
+
+    //update quiz question
+    updateQuizQuestion: build.mutation({
+      query: (payload) => ({
+        url: `${quiz_url}/question/${payload.id}`,
+        method: "PATCH",
+        data: payload.data,
+      }),
+      invalidatesTags: [tagTypes.quiz],
+    }),
+
+    //get LastQuiz Questions
+
+    getLastQuizQuestions: build.query({
+      query: (id) => ({
+        url: `${quiz_url}/question/${id}`,
+        method: "GET",
+      }),
+      providesTags: [tagTypes.quiz],
+    }),
   }),
 });
 
@@ -63,4 +93,7 @@ export const {
   useQuizQuery,
   useUpdateQuizMutation,
   useDeleteQuizMutation,
+  useCreateQuizQuestionMutation,
+  useUpdateQuizQuestionMutation,
+  useGetLastQuizQuestionsQuery,
 } = quizApi;
