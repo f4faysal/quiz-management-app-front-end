@@ -4,8 +4,12 @@ import { Banner } from "@/components/banner";
 import { OptionList } from "@/components/optionList";
 import UseModal from "@/components/reusable-ui/use-modal";
 import { Button } from "@/components/ui/button";
-import { useGetQuestionByIdQuery } from "@/redux/api/quizApi";
+import {
+  useGetQuestionByIdQuery,
+  useUpdateQuizQuestionMutation,
+} from "@/redux/api/quizApi";
 import React from "react";
+import toast from "react-hot-toast";
 import { OptionsForm } from "./question-option-form";
 import { QuestionsTitleForm } from "./question-title-form";
 
@@ -16,12 +20,27 @@ interface QuizOptionProps {
 const QuizOption: React.FC<QuizOptionProps> = ({ questionId }) => {
   const { data, isLoading } = useGetQuestionByIdQuery(questionId);
 
+  const [UpdateQuizQuestion] = useUpdateQuizQuestionMutation();
+  const requiredFields = [data?.text, data?.options?.length >= 4, data?.answer];
+
+  const totalFields = requiredFields?.length;
+  const completedFields = requiredFields?.filter(Boolean).length;
+  const completionText = `(${completedFields}/${totalFields})`;
+
+  const handelUpdlish = async () => {
+    await UpdateQuizQuestion({ id: data?.id, data: { isPublished: true } });
+    toast.success("Quiz published");
+    window.location.reload();
+  };
+
   if (isLoading) return <div>Loading...</div>;
 
   return (
     <UseModal title={data?.text} description="">
       {!data?.isPublished && (
-        <Banner label="This quiz questions is unpublished publish." />
+        <Banner
+          label={`Complete all fields ${completionText}. This quiz questions is unpublished publish.`}
+        />
       )}
 
       <QuestionsTitleForm initialData={data} filedName="text" />
@@ -33,9 +52,14 @@ const QuizOption: React.FC<QuizOptionProps> = ({ questionId }) => {
           </div>
         ))}
       </div>
-      <QuestionsTitleForm initialData={data} filedName="text" />
+      <QuestionsTitleForm initialData={data} filedName="answer" />
       <div className="my-2">
-        <Button disabled>Publish</Button>
+        <Button
+          onClick={() => handelUpdlish()}
+          disabled={completedFields !== 3}
+        >
+          Publish
+        </Button>
       </div>
     </UseModal>
   );

@@ -26,6 +26,8 @@ export const ChaptersList = ({
   const [isMounted, setIsMounted] = useState(false);
   const [chapters, setChapters] = useState(items);
 
+  console.log("chapters", chapters);
+
   useEffect(() => {
     setIsMounted(true);
   }, []);

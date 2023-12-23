@@ -21,11 +21,12 @@ import { useUpdateQuizQuestionMutation } from "@/redux/api/quizApi";
 
 interface titleFormProps {
   initialData: any;
-  filedName: string | "name";
+  filedName: string;
 }
 
 const formSchema = z.object({
   text: z.string().min(1),
+  answer: z.string().min(1),
 });
 
 export const QuestionsTitleForm = ({
@@ -48,6 +49,7 @@ export const QuestionsTitleForm = ({
   const { isSubmitting, isValid } = form.formState;
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    console.log("values", values);
     try {
       await UpdateQuizQuestion({ id: initialData?.id, data: values });
       toast.success("Chapter updated");
@@ -61,20 +63,24 @@ export const QuestionsTitleForm = ({
   return (
     <div className=" border bg-slate-100 rounded-md p-4">
       <div className="font-medium flex items-center justify-between">
-        Chapter title
+        {filedName === "text" ? "Question" : "Answer"}
         <Button onClick={toggleEdit} variant="ghost">
           {isEditing ? (
             <>Cancel</>
           ) : (
             <>
               <Pencil className="h-4 w-4 mr-2" />
-              Edit title
+              {filedName === "text" ? "Edit question" : "Edit answer"}
             </>
           )}
         </Button>
       </div>
 
-      {!isEditing && <p className="text-sm mt-2">{initialData.text}</p>}
+      {!isEditing && (
+        <p className="text-sm mt-2">
+          {filedName === "text" ? initialData.text : initialData.answer}
+        </p>
+      )}
 
       {isEditing && (
         <Form {...form}>
@@ -84,13 +90,17 @@ export const QuestionsTitleForm = ({
           >
             <FormField
               control={form.control}
-              name={filedName as any}
+              name={`${filedName === "text" ? "text" : "answer"}`}
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
                     <Input
                       disabled={isSubmitting}
-                      placeholder="e.g. 'Introduction to the course'"
+                      placeholder={`e.g. ${
+                        filedName === "text"
+                          ? "Question title"
+                          : "Question answer"
+                      }`}
                       {...field}
                     />
                   </FormControl>
