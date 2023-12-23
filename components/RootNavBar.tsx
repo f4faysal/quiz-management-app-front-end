@@ -7,20 +7,19 @@ import Link from "next/link";
 import { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { useDispatch } from "react-redux";
+import SingUp from "./auth/sing-up";
+import LoginPage from "./auth/song-in";
 import { MainNav } from "./main-nav";
 import Profile from "./profile";
 import UseModal from "./reusable-ui/use-modal";
-import SingUp from "./auth/sing-up";
-import LoginPage from "./auth/song-in";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 
 const RootNavBar = () => {
   const { role }: any = getUserInfo();
+
   const dispatch = useDispatch();
   const [toggleLogin, setToggleLogin] = useState<string>("sing-in");
-
-  console.log(role);
 
   return (
     <nav className="border-b lg:px-16 xl:px-20 sticky top-0">

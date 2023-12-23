@@ -19,7 +19,7 @@ export function MainNav({
   const pathname = usePathname();
   const params = useParams();
 
-  const student = [
+  const performer = [
     {
       href: `/`,
       label: "Home",
@@ -42,7 +42,7 @@ export function MainNav({
   ];
 
   const instanter = [
-    ...student,
+    ...performer,
     {
       href: `/create-quiz`,
       label: "Create Quiz",
@@ -62,7 +62,7 @@ export function MainNav({
       className={cn("flex items-center space-x-4 lg:space-x-9", className)}
       {...props}
     >
-      {role === "instructor"
+      {role === "admin"
         ? instanter.map((route) => (
             <Link
               key={route.href}
@@ -78,8 +78,8 @@ export function MainNav({
               {route.label}
             </Link>
           ))
-        : role === "student"
-        ? student.map((route) => (
+        : role === "performer"
+        ? performer.map((route) => (
             <Link
               key={route.href}
               href={route.href}
@@ -94,7 +94,7 @@ export function MainNav({
               {route.label}
             </Link>
           ))
-        : student.map((route) => (
+        : performer.map((route) => (
             <Link
               key={route.href}
               href={route.href}
