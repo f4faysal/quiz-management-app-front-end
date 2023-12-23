@@ -19,11 +19,7 @@ import {
 import { Input } from "@/components/ui/input";
 
 import { cn } from "@/lib/utils";
-import {
-  useCreatechapterMutation,
-  useLastChapterQuery,
-  useReorderMutation,
-} from "@/redux/api/chapterApi";
+
 import { ChaptersList } from "./chapters-list";
 
 interface ChaptersFormProps {
@@ -40,10 +36,10 @@ const formSchema = z.object({
 export const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
   const [isCreating, setIsCreating] = useState(false);
   const [isUpdating, setIsUpdating] = useState(false);
-  const { data, isLoading } = useLastChapterQuery(courseId);
+  // const { data, isLoading } = useLastChapterQuery(courseId);
 
-  const [createchapter] = useCreatechapterMutation();
-  const [reorder] = useReorderMutation();
+  // const [createchapter] = useCreatechapterMutation();
+  // const [reorder] = useReorderMutation();
 
   const toggleCreating = () => {
     setIsCreating((current) => !current);
@@ -62,9 +58,9 @@ export const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     values.courseId = courseId;
-    values.position = data;
+    // values.position = data;
     try {
-      const res = await createchapter(values);
+      // const res = await createchapter(values);
       toast.success("Chapter created");
       toggleCreating();
       window.location.reload();
@@ -77,7 +73,7 @@ export const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
     try {
       setIsUpdating(true);
 
-      await reorder({ list: updateData });
+      // await reorder({ list: updateData });
 
       toast.success("Chapters reordered");
       router.refresh();
@@ -92,9 +88,9 @@ export const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
     router.push(`/dashboard/teacher/courses/${courseId}/chapters/${id}`);
   };
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+  // if (isLoading) {
+  //   return <div>Loading...</div>;
+  // }
 
   return (
     <div className="relative mt-6 border bg-slate-100 rounded-md p-4">
@@ -155,7 +151,7 @@ export const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
           <ChaptersList
             onEdit={onEdit}
             onReorder={onReorder}
-            items={initialData.chapters || []}
+            items={initialData?.chapters || []}
           />
         </div>
       )}

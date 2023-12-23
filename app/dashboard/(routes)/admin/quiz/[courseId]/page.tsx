@@ -12,6 +12,7 @@ import { getUserInfo } from "@/services/auth.service";
 import { Actions } from "./_components/actions";
 import Category from "./_components/category";
 import { TitleForm } from "./_components/title-form";
+import { ChaptersForm } from "./_components/chapters-form";
 
 const CourseIdPage = ({ params }: { params: { courseId: string } }) => {
   const { userId }: any = getUserInfo();
@@ -60,7 +61,7 @@ const CourseIdPage = ({ params }: { params: { courseId: string } }) => {
               <h2 className="text-xl">Customize your quiz</h2>
             </div>
             <TitleForm initialData={quiz} courseId={quiz?.id} />
-            <Category quiz={quiz} categories={quiz.id} />
+            <Category quiz={quiz} categories={quiz?.id} />
           </div>
           <div className="space-y-6">
             <div>
@@ -68,7 +69,7 @@ const CourseIdPage = ({ params }: { params: { courseId: string } }) => {
                 <IconBadge icon={ListChecks} />
                 <h2 className="text-xl">Quiz questions</h2>
               </div>
-              {/* <ChaptersForm initialData={course} courseId={course?.id} /> */}
+              <ChaptersForm initialData={quiz} courseId={quiz?.id} />
             </div>
           </div>
         </div>

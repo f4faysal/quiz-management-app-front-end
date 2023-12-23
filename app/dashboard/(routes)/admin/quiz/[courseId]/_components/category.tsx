@@ -6,8 +6,8 @@ const Category = ({ quiz, categories }: { quiz: any; categories: any }) => {
   const { data, isLoading } = useCategoriesQuery({});
 
   const options = data?.map((category: { name: any; id: any }) => ({
-    label: category.name,
-    value: category.id,
+    label: category?.name,
+    value: category?.id,
   }));
 
   return (

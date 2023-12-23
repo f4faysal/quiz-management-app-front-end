@@ -54,7 +54,7 @@ export const CategoryForm = ({
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       await updateQuiz({ id: courseId, data: values });
-      toast.success("Course updated");
+      toast.success("Category updated");
       toggleEdit();
       router.refresh();
     } catch {
@@ -63,7 +63,7 @@ export const CategoryForm = ({
   };
 
   const selectedOption = options?.find(
-    (option) => option.value === initialData.categoryId
+    (option) => option?.value === initialData?.categoryId
   );
 
   return (
@@ -85,7 +85,7 @@ export const CategoryForm = ({
         <p
           className={cn(
             "text-sm mt-2",
-            !initialData.categoryId && "text-slate-500 italic"
+            !initialData?.categoryId && "text-slate-500 italic"
           )}
         >
           {selectedOption?.label || "No category"}
