@@ -62,7 +62,7 @@ export const quizApi = baseApi.injectEndpoints({
         method: "POST",
         data: payload,
       }),
-      invalidatesTags: [tagTypes.quiz],
+      invalidatesTags: [tagTypes.question],
     }),
 
     //update quiz question
@@ -72,17 +72,25 @@ export const quizApi = baseApi.injectEndpoints({
         method: "PATCH",
         data: payload.data,
       }),
-      invalidatesTags: [tagTypes.quiz],
+      invalidatesTags: [tagTypes.question],
     }),
 
-    //get LastQuiz Questions
-
+    //get LastQuiz Questions by quiz id
     getLastQuizQuestions: build.query({
       query: (id) => ({
         url: `${quiz_url}/question/${id}`,
         method: "GET",
       }),
-      providesTags: [tagTypes.quiz],
+      providesTags: [tagTypes.question],
+    }),
+
+    // get Question by id
+    getQuestionById: build.query({
+      query: (id) => ({
+        url: `${quiz_url}/question-id/${id}`,
+        method: "GET",
+      }),
+      providesTags: [tagTypes.question],
     }),
   }),
 });
@@ -96,4 +104,5 @@ export const {
   useCreateQuizQuestionMutation,
   useUpdateQuizQuestionMutation,
   useGetLastQuizQuestionsQuery,
+  useGetQuestionByIdQuery,
 } = quizApi;

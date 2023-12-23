@@ -44,7 +44,7 @@ const formSchema = z.object({
 export const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
   const [isCreating, setIsCreating] = useState(false);
   const [isUpdating, setIsUpdating] = useState(false);
-  const [editId, setEditId] = useState<string | null>(null);
+  const [editId, setEditId] = useState<string>("");
   const { data, isLoading } = useGetLastQuizQuestionsQuery(initialData.id);
   const [CreateQuizQuestion] = useCreateQuizQuestionMutation();
   const toggleCreating = () => {
@@ -78,9 +78,7 @@ export const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
   const onReorder = async (updateData: { id: string; position: number }[]) => {
     try {
       setIsUpdating(true);
-
       // await reorder({ list: updateData });
-
       toast.success("Chapters reordered");
       router.refresh();
     } catch {
@@ -96,13 +94,13 @@ export const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
     dispatch(onOpen());
   };
 
-  // if (isLoading) {
-  //   return <div>Loading...</div>;
-  // }
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="relative mt-6 border bg-slate-100 rounded-md p-4">
-      <QuizOption editId={editId} />
+      <QuizOption questionId={editId} />
 
       {isUpdating && (
         <div className="absolute h-full w-full bg-slate-500/20 top-0 right-0 rounded-m flex items-center justify-center">
