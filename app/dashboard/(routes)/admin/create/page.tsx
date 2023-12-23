@@ -18,7 +18,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { useCreateCourseMutation } from "@/redux/api/courseApi";
+
 import { getUserInfo } from "@/services/auth.service";
 
 const formSchema = z.object({
@@ -38,15 +38,12 @@ const CreatePage = () => {
     },
   });
 
-  const [createCourse] = useCreateCourseMutation();
-
   const { isSubmitting, isValid } = form.formState;
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    values.userId = userId;
     try {
-      const response: any = await createCourse(values);
-      router.push(`/dashboard/teacher/courses/${response?.data?.id}`);
+      console.log(values);
+      // router.push(`/dashboard/teacher/courses/${response?.data?.id}`);
       toast.success("Course created");
     } catch {
       toast.error("Something went wrong");
@@ -56,10 +53,10 @@ const CreatePage = () => {
   return (
     <div className="max-w-5xl mx-auto flex md:items-center md:justify-center h-full p-6">
       <div>
-        <h1 className="text-2xl">Name your course</h1>
+        <h1 className="text-2xl">Name your quiz</h1>
         <p className="text-sm text-slate-600">
-          What would you like to name your course? Don&apos;t worry, you can
-          change this later.
+          Give your quiz a name that describes what it&apos;s about.
+          <br /> You can always change the name later.
         </p>
         <Form {...form}>
           <form
@@ -71,7 +68,7 @@ const CreatePage = () => {
               name="title"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Course title</FormLabel>
+                  <FormLabel>Quiz title</FormLabel>
                   <FormControl>
                     <Input
                       disabled={isSubmitting}
@@ -80,7 +77,8 @@ const CreatePage = () => {
                     />
                   </FormControl>
                   <FormDescription>
-                    What will you teach in this course?
+                    Make sure to pick a name that describes what your quiz is
+                    about.
                   </FormDescription>
                   <FormMessage />
                 </FormItem>

@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/button";
 import {
   useCreateattachmentMutation,
   useDeleteattachmentMutation,
-} from "@/redux/api/attachmentApi";
+} from "@/redux/api/quizApi";
 
 interface AttachmentFormProps {
   initialData: any & { attachments: any[] };

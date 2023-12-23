@@ -10,8 +10,8 @@ import { Banner } from "@/components/banner";
 import { IconBadge } from "@/components/icon-badge";
 // import { db } from "@/lib/db";
 
-import getCategories from "@/constants/getCategories";
-import { useCourseQuery } from "@/redux/api/courseApi";
+// import getCategories from "@/constants/getCategories";
+// import { useCourseQuery } from "@/redux/api/courseApi";
 import { getUserInfo } from "@/services/auth.service";
 import { Actions } from "./_components/actions";
 import { AttachmentForm } from "./_components/attachment-form";
@@ -29,10 +29,10 @@ const CourseIdPage = ({ params }: { params: { courseId: string } }) => {
   //   return redirect("/");
   // }
   console.log(userId, params.courseId);
-  const { data, isLoading } = useCourseQuery(params.courseId);
+  const { data, isLoading } = { data: {}, isLoading: false }; // useCourseQuery(params.courseId);
   const course = data;
 
-  const categories = getCategories();
+  const categories = [];
 
   // if (!course) {
   //   return redirect("/");
