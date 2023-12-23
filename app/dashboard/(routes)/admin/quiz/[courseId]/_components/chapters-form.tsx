@@ -24,7 +24,10 @@ import {
   useCreateQuizQuestionMutation,
   useGetLastQuizQuestionsQuery,
 } from "@/redux/api/quizApi";
+import { onOpen } from "@/redux/features/modal/modalSlice";
+import { useDispatch } from "react-redux";
 import { ChaptersList } from "./chapters-list";
+import QuizOption from "./quizOption";
 
 interface ChaptersFormProps {
   initialData: any & { chapters: any[] };
@@ -41,20 +44,12 @@ const formSchema = z.object({
 export const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
   const [isCreating, setIsCreating] = useState(false);
   const [isUpdating, setIsUpdating] = useState(false);
-
+  const [editId, setEditId] = useState<string | null>(null);
   const { data, isLoading } = useGetLastQuizQuestionsQuery(initialData.id);
-
-  console.log(initialData);
-  console.log(data);
-
-  // const [createchapter] = useCreatechapterMutation();
   const [CreateQuizQuestion] = useCreateQuizQuestionMutation();
-  // const [reorder] = useReorderMutation();
-
   const toggleCreating = () => {
     setIsCreating((current) => !current);
   };
-
   const router = useRouter();
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -94,9 +89,11 @@ export const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
       setIsUpdating(false);
     }
   };
-
+  const dispatch = useDispatch();
   const onEdit = (id: string) => {
-    router.push(`/dashboard/teacher/courses/${courseId}/chapters/${id}`);
+    setEditId(id);
+    // router.push(`/dashboard/teacher/courses/${courseId}/chapters/${id}`);
+    dispatch(onOpen());
   };
 
   // if (isLoading) {
@@ -105,6 +102,8 @@ export const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
 
   return (
     <div className="relative mt-6 border bg-slate-100 rounded-md p-4">
+      <QuizOption editId={editId} />
+
       {isUpdating && (
         <div className="absolute h-full w-full bg-slate-500/20 top-0 right-0 rounded-m flex items-center justify-center">
           <Loader2 className="animate-spin h-6 w-6 text-sky-700" />

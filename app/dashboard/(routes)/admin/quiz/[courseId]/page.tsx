@@ -3,20 +3,16 @@ import { LayoutDashboard, ListChecks } from "lucide-react";
 
 import { Banner } from "@/components/banner";
 import { IconBadge } from "@/components/icon-badge";
-// import { db } from "@/lib/db";
 
-// import getCategories from "@/constants/getCategories";
-// import { useCourseQuery } from "@/redux/api/courseApi";
 import { useQuizQuery } from "@/redux/api/quizApi";
 import { getUserInfo } from "@/services/auth.service";
 import { Actions } from "./_components/actions";
 import Category from "./_components/category";
-import { TitleForm } from "./_components/title-form";
 import { ChaptersForm } from "./_components/chapters-form";
+import { TitleForm } from "./_components/title-form";
 
 const CourseIdPage = ({ params }: { params: { courseId: string } }) => {
   const { userId }: any = getUserInfo();
-
   const { data, isLoading } = useQuizQuery(params.courseId);
 
   console.log(data);
