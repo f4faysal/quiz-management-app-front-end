@@ -7,20 +7,19 @@ import { IconBadge } from "@/components/icon-badge";
 
 // import getCategories from "@/constants/getCategories";
 // import { useCourseQuery } from "@/redux/api/courseApi";
-import { useCategoriesQuery } from "@/redux/api/categoryApi";
 import { useQuizQuery } from "@/redux/api/quizApi";
 import { getUserInfo } from "@/services/auth.service";
 import { Actions } from "./_components/actions";
-import { CategoryForm } from "./_components/category-form";
+import Category from "./_components/category";
 import { TitleForm } from "./_components/title-form";
 
 const CourseIdPage = ({ params }: { params: { courseId: string } }) => {
   const { userId }: any = getUserInfo();
+
   const { data, isLoading } = useQuizQuery(params.courseId);
-  const { data: categories } = useCategoriesQuery({});
+
   console.log(data);
   const quiz = data;
-
   const requiredFields = [quiz?.title, quiz?.category?.name, quiz?.questions];
 
   const totalFields = requiredFields?.length;
@@ -61,14 +60,7 @@ const CourseIdPage = ({ params }: { params: { courseId: string } }) => {
               <h2 className="text-xl">Customize your quiz</h2>
             </div>
             <TitleForm initialData={quiz} courseId={quiz?.id} />
-            <CategoryForm
-              initialData={quiz}
-              courseId={quiz.id}
-              options={categories?.map((category) => ({
-                label: category.name,
-                value: category.id,
-              }))}
-            />
+            <Category quiz={quiz} categories={quiz.id} />
           </div>
           <div className="space-y-6">
             <div>
