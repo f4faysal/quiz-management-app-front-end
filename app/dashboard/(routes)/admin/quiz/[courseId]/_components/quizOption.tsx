@@ -1,5 +1,6 @@
 "use client";
 
+import Loading from "@/app/loading";
 import { Banner } from "@/components/banner";
 import { OptionList } from "@/components/optionList";
 import UseModal from "@/components/reusable-ui/use-modal";
@@ -13,7 +14,6 @@ import toast from "react-hot-toast";
 import { QuestionsAnswerForm } from "./question-answer-form";
 import { OptionsForm } from "./question-option-form";
 import { QuestionsTitleForm } from "./question-title-form";
-import Loading from "@/app/loading";
 
 interface QuizOptionProps {
   questionId: string;
@@ -40,7 +40,7 @@ const QuizOption: React.FC<QuizOptionProps> = ({ questionId }) => {
     window.location.reload();
   };
   if (isLoading) {
-    return  <Loading/>
+    return <Loading />;
   }
 
   return (
@@ -63,6 +63,7 @@ const QuizOption: React.FC<QuizOptionProps> = ({ questionId }) => {
       <QuestionsAnswerForm initialData={data} />
       <div className="my-2">
         <Button
+          className="bg-[#7C39C4] hover:bg-[#7C39C4]/80"
           onClick={() => handelPublished()}
           disabled={completedFields !== 3}
         >

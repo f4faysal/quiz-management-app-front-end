@@ -51,7 +51,7 @@ export const TitleForm = ({ initialData, courseId }: TitleFormProps) => {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       await updateQuiz({ id: courseId, data: values });
-      toast.success("Quizzes updated");
+      toast.success("Quiz title updated");
       toggleEdit();
       router.refresh();
     } catch {
@@ -98,7 +98,11 @@ export const TitleForm = ({ initialData, courseId }: TitleFormProps) => {
               )}
             />
             <div className="flex items-center gap-x-2">
-              <Button disabled={!isValid || isSubmitting} type="submit">
+              <Button
+                className="bg-[#7C39C4] hover:bg-[#7C39C4]/80"
+                disabled={!isValid || isSubmitting}
+                type="submit"
+              >
                 Save
               </Button>
             </div>

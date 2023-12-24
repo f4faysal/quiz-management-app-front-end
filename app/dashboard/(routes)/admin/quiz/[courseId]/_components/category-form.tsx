@@ -54,7 +54,7 @@ export const CategoryForm = ({
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       await updateQuiz({ id: courseId, data: values });
-      toast.success("Category updated");
+      toast.success("Quiz Category updated");
       toggleEdit();
       router.refresh();
     } catch {
@@ -69,7 +69,7 @@ export const CategoryForm = ({
   return (
     <div className="mt-6 border bg-slate-100 rounded-md p-4">
       <div className="font-medium flex items-center justify-between">
-        Course category
+        Quiz category
         <Button onClick={toggleEdit} variant="ghost">
           {isEditing ? (
             <>Cancel</>
@@ -110,7 +110,11 @@ export const CategoryForm = ({
               )}
             />
             <div className="flex items-center gap-x-2">
-              <Button disabled={!isValid || isSubmitting} type="submit">
+              <Button
+                className="bg-[#7C39C4] hover:bg-[#7C39C4]/80"
+                disabled={!isValid || isSubmitting}
+                type="submit"
+              >
                 Save
               </Button>
             </div>

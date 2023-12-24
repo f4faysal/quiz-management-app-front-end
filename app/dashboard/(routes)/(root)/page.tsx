@@ -51,7 +51,9 @@ export default async function Dashboard() {
       </div>
       <div className="grid grid-cols-1 text-center">
         <Link href="/dashboard/admin/quiz">
-          <Button className="px-10">View all quizzes</Button>
+          <Button className="px-10 bg-[#7C39C4] hover:bg-[#7C39C4]/80">
+            View all quizzes
+          </Button>
         </Link>
       </div>
     </div>

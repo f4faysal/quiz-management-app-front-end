@@ -1,18 +1,13 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 "use client";
 
-import Loading from "@/app/loading";
-import { useCategoryQuery } from "@/redux/api/categoryApi";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
 import toast from "react-hot-toast";
-import { useDispatch } from "react-redux";
 import { Button } from "./ui/button";
 
 const QuizCatagorySection = ({ categories }: any) => {
   const router = useRouter();
 
-  const dispatch = useDispatch();
   const handelQuizSelect = (id: string) => {
     router.push(`/quizzes/${id}`);
     toast.success(`Tola quizzes selected `);

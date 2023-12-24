@@ -76,7 +76,7 @@ export const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
     try {
       setIsUpdating(true);
       // await reorder({ list: updateData });
-      toast.success("Chapters reordered");
+      toast.success("Questions reordered");
       router.refresh();
     } catch {
       toast.error("Something went wrong");
@@ -131,7 +131,7 @@ export const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
                   <FormControl>
                     <Input
                       disabled={isSubmitting}
-                      placeholder="e.g. 'Introduction to the course'"
+                      placeholder="e.g. 'Introduction to the Quiz questions'"
                       {...field}
                     />
                   </FormControl>
@@ -139,7 +139,11 @@ export const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
                 </FormItem>
               )}
             />
-            <Button disabled={!isValid || isSubmitting} type="submit">
+            <Button
+              className="bg-[#7C39C4] hover:bg-[#7C39C4]/80"
+              disabled={!isValid || isSubmitting}
+              type="submit"
+            >
               Create
             </Button>
           </form>

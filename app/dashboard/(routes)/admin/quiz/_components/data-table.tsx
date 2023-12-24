@@ -67,7 +67,7 @@ export function DataTable<TData, TValue>({
           className="max-w-sm"
         />
         <Link href="/dashboard/admin/create">
-          <Button>
+          <Button className="bg-[#7C39C4] hover:bg-[#7C39C4]/80">
             <PlusCircle className="h-4 w-4 mr-2" />
             New Quiz
           </Button>

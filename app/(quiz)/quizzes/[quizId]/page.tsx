@@ -4,6 +4,7 @@ import Loading from "@/app/loading";
 import { Button } from "@/components/ui/button";
 import Container from "@/components/ui/container";
 import { useCategoryQuery } from "@/redux/api/categoryApi";
+import Link from "next/link";
 
 const QuizPage = ({ params }: any) => {
   const { data, isLoading } = useCategoryQuery(params.quizId);
@@ -23,7 +24,7 @@ const QuizPage = ({ params }: any) => {
         </span>
       </div>
       <Container>
-        <div className="grid grid-cols-12 gap-2 px-2 md:px-0 mt-2 ">
+        <div className="grid grid-cols-12 gap-2 px-2 md:px-0 mt-5 ">
           {data?.map((quiz: any) => (
             <div
               key={quiz.id}
@@ -38,13 +39,15 @@ const QuizPage = ({ params }: any) => {
               <p className="text-xs">
                 Publish by: <span>{quiz?.createdBy?.name}</span>
               </p>
-              <Button
-                onClick={() => handelQuixStart(quiz.id)}
-                className="w-full"
-                size={"sm"}
-              >
-                Start Quiz
-              </Button>
+              <Link href={`/quizzes/fQuiz/start/${quiz?.id}`}>
+                <Button
+                  onClick={() => handelQuixStart(quiz.id)}
+                  className="w-full bg-[#7C39C4] hover:bg-[#7C39C4]/80"
+                  size={"sm"}
+                >
+                  Start Quiz
+                </Button>
+              </Link>
             </div>
           ))}
         </div>

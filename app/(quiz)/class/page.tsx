@@ -28,7 +28,7 @@ const QuizzzesPage = ({ params }: any) => {
         </span>
       </div>
       <Container>
-        <div className="grid grid-cols-12 gap-2 px-2 md:px-0 mt-2 ">
+        <div className="grid grid-cols-12 gap-2 px-2 md:px-0 mt-5 ">
           {publishQuizzes?.map((quiz: any) => (
             <div
               key={quiz.id}
@@ -46,7 +46,7 @@ const QuizzzesPage = ({ params }: any) => {
               <Link href={`/quizzes/fQuiz/start/${quiz?.id}`}>
                 <Button
                   onClick={() => handelQuixStart(quiz.id)}
-                  className="w-full"
+                  className="w-full bg-[#7C39C4] hover:bg-[#7C39C4]/80 "
                   size={"sm"}
                 >
                   Start Quiz

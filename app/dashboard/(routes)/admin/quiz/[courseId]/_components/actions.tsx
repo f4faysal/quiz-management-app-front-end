@@ -83,7 +83,7 @@ export const Actions = ({ disabled, quizId, isPublished }: ActionsProps) => {
     <div className="flex items-center gap-x-2">
       <Button
         onClick={onClick}
-        className="bg-green-800 hover:bg-green-600 text-white hover:text-white"
+        className="bg-[#7C39C4] hover:bg-[#7C39C4]/80 text-white hover:text-white"
         disabled={disabled || isLoading}
         variant="outline"
         size="sm"
@@ -91,7 +91,7 @@ export const Actions = ({ disabled, quizId, isPublished }: ActionsProps) => {
         {isPublished ? "Unpublished" : "Publish"}
       </Button>
       <ConfirmModal onConfirm={onDelete}>
-        <Button size="sm" disabled={isLoading}>
+        <Button size="sm" variant={"destructive"} disabled={isLoading}>
           <Trash className="h-4 w-4" />
         </Button>
       </ConfirmModal>

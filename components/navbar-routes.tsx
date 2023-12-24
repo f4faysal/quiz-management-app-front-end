@@ -31,7 +31,7 @@ export const NavbarRoutes = () => {
       {!isCoursePage ? (
         <div>
           <Link href="/">
-            <Button size="sm" variant="outline">
+            <Button className="text-[#7C39C4]" size="sm" variant="link">
               <HomeIcon className="h-4 w-4 mr-2" />
               Home
             </Button>
@@ -49,7 +49,11 @@ export const NavbarRoutes = () => {
           </Link>
         ) : isTeacher ? (
           <Link href="/dashboard/admin/quiz">
-            <Button size="sm" variant="default">
+            <Button
+              className="bg-[#7C39C4] hover:bg-[#7C39C4]/80"
+              size="sm"
+              variant="default"
+            >
               Admin mode
             </Button>
           </Link>

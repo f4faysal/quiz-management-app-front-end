@@ -95,7 +95,11 @@ const CreatePage = () => {
                   Cancel
                 </Button>
               </Link>
-              <Button type="submit" disabled={!isValid || isSubmitting}>
+              <Button
+                type="submit"
+                className="bg-[#7C39C4] hover:bg-[#7C39C4]/80"
+                disabled={!isValid || isSubmitting}
+              >
                 Continue
               </Button>
             </div>
