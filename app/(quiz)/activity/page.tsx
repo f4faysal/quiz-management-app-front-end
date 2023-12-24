@@ -75,7 +75,7 @@ const ActivityPage = () => {
       <Tabs defaultValue="completed" className="">
         <div className="h-16 bg-[#A076CC]/30 ">
           <Container>
-            <div className="flex items-center gap-5 ">
+            <div className="flex items-center gap-5 px-2 md:px-0">
               <div>
                 <h1 className="text-3xl font-semibold text-[#b383e8]">
                   Activity
@@ -98,12 +98,11 @@ const ActivityPage = () => {
           </Container>
         </div>
 
-        <div className="mt-10">
+        <div className="mt-10 px-2 md:px-0">
           <Container>
             <TabsContent value="running">Running</TabsContent>
             <TabsContent value="completed">completed</TabsContent>
             <TabsContent value="created">
-              start quiz
               <StartQuiz />
             </TabsContent>
           </Container>
