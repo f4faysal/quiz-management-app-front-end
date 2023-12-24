@@ -270,7 +270,7 @@ const StartQuiz = ({ quiz }: any) => {
                 router.push("/leader-board");
               }}
             >
-              Restart
+              Go to Leader Board
             </Button>
           </div>
         )}

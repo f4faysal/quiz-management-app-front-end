@@ -1,32 +1,57 @@
-import { Button } from "@/components/ui/button";
-import { HomeIcon } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
+"use client";
 
-const page = () => {
+import Loading from "@/app/loading";
+import Container from "@/components/ui/container";
+import { useScoresQuery } from "@/redux/api/categoryApi";
+import { formatDistanceToNowStrict } from "date-fns";
+
+const LeaderBoard = () => {
+  const { data, isLoading } = useScoresQuery({});
+
+  const sortedData = data?.slice().sort((a: any, b: any) => b.score - a.score);
+
+  console.log(sortedData);
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
   return (
-    <div className="h-screen w-screen flex justify-center items-center">
-      <div className="flex flex-col justify-center items-center gap-2">
-        <h1 className="text-2xl">
-          Looks like you haven&apos;t played a class yet.
-        </h1>
+    <Container>
+      <div className="h-full w-full flex flex-col   ">
+        <h2 className="text-center text-3xl font-semibold py-5 text-[#A076CC]">
+          Leader Board
+        </h2>
 
-        <Image
-          src="/activity.png"
-          width={1000}
-          height={1000}
-          alt="logo"
-          className="w-[300px] h-[300px]"
-        />
-        <Link href="/">
-          <Button className="text-[#7C39C4]   mt-3" size="sm" variant={"link"}>
-            <HomeIcon className="h-5 w-5 mr-2" />
-            Go to Home
-          </Button>
-        </Link>
+        <div className="h-[100vh]">
+          <div>
+            <div className="flex justify-between items-center bg-[#A076CC] text-white font-semibold px-5 py-2 rounded-md">
+              <div className="w-1/4">Name</div>
+              <div className="w-1/4">Score</div>
+              <div className="w-1/4">Quiz</div>
+              <div className="w-1/4">Date</div>
+            </div>
+            {sortedData?.map((item: any, index: number) => (
+              <div
+                key={index}
+                className="flex justify-between items-center px-5 py-2 border-b border-[#A076CC] text-[#A076CC]"
+              >
+                <div className="w-1/4">
+                  <span className="mr-2 font-bold">{index + 1}</span>{" "}
+                  {item?.user?.name}
+                </div>
+                <div className="w-1/4">{item.score}</div>
+                <div className="w-1/4">{item?.quiz?.title}</div>
+                <div className="w-1/4">
+                  {formatDistanceToNowStrict(new Date(item.createdAt))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
-    </div>
+    </Container>
   );
 };
 
-export default page;
+export default LeaderBoard;
