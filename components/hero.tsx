@@ -1,11 +1,17 @@
 "use client";
 
 import { useMyProfileQuery } from "@/redux/api/authApi";
+import { onOpen } from "@/redux/features/modal/modalSlice";
 import { getUserInfo } from "@/services/auth.service";
 import { AvatarImage } from "@radix-ui/react-avatar";
 import { CameraIcon } from "lucide-react";
 import Link from "next/link";
+import { useState } from "react";
 import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import SingUp from "./auth/sing-up";
+import LoginPage from "./auth/song-in";
+import UseModal from "./reusable-ui/use-modal";
 import { Avatar, AvatarFallback } from "./ui/avatar";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
@@ -17,10 +23,21 @@ const Hero = () => {
 
   console.log(data);
 
+  const dispatch = useDispatch();
+  const [toggleLogin, setToggleLogin] = useState<string>("sing-in");
+
   if (isLoading) return <div>Loading...</div>;
 
   return (
     <div className="grid grid-cols-12 gap-4 py-10 ">
+      <UseModal title="" description="">
+        {toggleLogin === "sing-in" ? (
+          <LoginPage setToggleLogin={setToggleLogin} />
+        ) : (
+          <SingUp setToggleLogin={setToggleLogin} />
+        )}
+      </UseModal>
+
       <div className="col-span-12  md:col-span-7 border p-24 bg-white rounded-xl shadow-md">
         <div className="flex gap-2 p-2 bg-[#F4F4F5] rounded-xl border-2 border-[#A4A4A4]  ">
           <Input
@@ -45,8 +62,14 @@ const Hero = () => {
               <AvatarFallback>fQ</AvatarFallback>
             </Avatar>
             <p className="text-sm">
-              <span className="text-[#A076CC] underline cursor-pointer hover:text-[#9b68d2]">
-                Sign up
+              <span
+                onClick={() => {
+                  dispatch(onOpen());
+                  setToggleLogin("sing-up");
+                }}
+                className="text-[#A076CC] underline cursor-pointer hover:text-[#9b68d2]"
+              >
+                Sign Up
               </span>
               &nbsp;
               <span className="text-sm text-gray-500">

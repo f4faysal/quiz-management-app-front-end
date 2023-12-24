@@ -18,6 +18,8 @@ import { Input } from "./ui/input";
 const RootNavBar = () => {
   const { role }: any = getUserInfo();
 
+  console.log(role);
+
   const dispatch = useDispatch();
   const [toggleLogin, setToggleLogin] = useState<string>("sing-in");
 
@@ -54,9 +56,9 @@ const RootNavBar = () => {
                 dispatch(onOpen());
                 setToggleLogin("sing-in");
               }}
-              className="flex gap-2"
+              className="flex gap-2 text-[#A076CC]"
               size={"sm"}
-              variant={"outline"}
+              variant={"link"}
             >
               <LogIn width={18} /> Sign In
             </Button>
