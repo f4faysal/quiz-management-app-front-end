@@ -1,3 +1,4 @@
+import CardInfo from "@/components/card-info";
 import Hero from "@/components/hero";
 import Container from "@/components/ui/container";
 
