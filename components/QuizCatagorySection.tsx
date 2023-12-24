@@ -10,7 +10,7 @@ const QuizCatagorySection = ({ categories }: any) => {
 
   const handelQuizSelect = (id: string) => {
     router.push(`/quizzes/${id}`);
-    toast.success(`Tola quizzes selected `);
+    toast.success(`Quiz selected `);
   };
 
   return (
