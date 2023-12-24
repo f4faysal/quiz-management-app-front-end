@@ -1,32 +1,40 @@
-# fQuiz - Quiz Management App
+# fQuiz - Quiz Management App 🏆
 
 ## Overview
 
 **fQuiz** is a comprehensive Quiz Management App designed to empower admins in creating quizzes, tracking performer scores, and delivering an engaging quiz experience. Crafted with Next.js, Typescript, Redux, Express, PostgreSQL, and Prisma for seamless integration.
 
+## Live Demo - [fQuiz](https://fquiz.vercel.app/)
+
 ## Features
 
 - **User Auth:**
+
   - Roles: admin, performer.
   - Seamless sign-up, log-in, and account management.
 
 - **Quiz Management:**
+
   - Admins create, edit, and delete quizzes.
   - Intuitive quiz categorization (e.g., frontend, fullstack).
   - Support for both single and multiple-choice questions.
 
 - **Quiz Taking:**
+
   - Performers select a category, answer 10 random questions.
   - Instant feedback and real-time score calculation.
   - Leaderboard showcasing top performers.
 
 - **Score Tracking:**
+
   - Store and display user scores efficiently.
 
 - **Database:**
+
   - Utilizes PostgreSQL with Prisma ORM for optimal data handling.
 
 - **Error Handling:**
+
   - Robust mechanisms ensure a smooth user experience.
 
 - **UI:**
