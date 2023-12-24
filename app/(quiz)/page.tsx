@@ -1,17 +1,23 @@
+"use client";
+
 import QuizCatagorySection from "@/components/QuizCatagorySection";
 import ClassQuizSection from "@/components/classQuizSection";
 import Hero from "@/components/hero";
 import Container from "@/components/ui/container";
 import { nodejs, reactjs } from "@/constants/global";
+import { useCategoriesQuery } from "@/redux/api/categoryApi";
+import Loading from "../loading";
 
-const page = () => {
+const Page = () => {
+  const { data, isLoading } = useCategoriesQuery({});
+
+  if (isLoading) return <Loading />;
+
   return (
     <div>
       <Container>
         <Hero />
-
-        <QuizCatagorySection />
-
+        <QuizCatagorySection categories={data} />
         <ClassQuizSection categories={nodejs} title="Mathematics" />
         <ClassQuizSection
           categories={reactjs}
@@ -24,4 +30,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

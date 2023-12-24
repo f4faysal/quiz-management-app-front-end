@@ -1,18 +1,22 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 "use client";
 
 import Loading from "@/app/loading";
-import { useCategoriesQuery } from "@/redux/api/categoryApi";
+import { useCategoryQuery } from "@/redux/api/categoryApi";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
 import { Button } from "./ui/button";
 
-const QuizCatagorySection = () => {
-  const { data, isLoading } = useCategoriesQuery({});
-  const categories = data;
+const QuizCatagorySection = ({ categories }: any) => {
+  const router = useRouter();
 
+  const dispatch = useDispatch();
   const handelQuizSelect = (id: string) => {
-    console.log("quiz selected");
+    router.push(`/quizzes/${id}`);
+    toast.success(`Tola quizzes selected `);
   };
-
-  if (isLoading) return <Loading />;
 
   return (
     <div>
@@ -31,9 +35,7 @@ const QuizCatagorySection = () => {
           return (
             <div
               key={category.id}
-              onClick={() => {
-                console.log(category.id);
-              }}
+              onClick={() => handelQuizSelect(category.id)}
               className="col-span-2 bg-[#7C39C4]/10 text-center py-2 rounded-lg shadow-2xl hover:bg-[#7C39C4]/20 hover:shadow-2xl transition duration-30 cursor-pointer"
             >
               {category.name}
