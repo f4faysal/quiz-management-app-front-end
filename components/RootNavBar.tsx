@@ -5,7 +5,6 @@ import { getUserInfo } from "@/services/auth.service";
 import { LogIn } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
-import { GiHamburgerMenu } from "react-icons/gi";
 import { useDispatch } from "react-redux";
 import SingUp from "./auth/sing-up";
 import LoginPage from "./auth/song-in";
@@ -64,9 +63,6 @@ const RootNavBar = () => {
             </Button>
             // </Link>
           )}
-        </div>
-        <div className="flex md:hidden px-2">
-          <GiHamburgerMenu />
         </div>
       </div>
       {/* </Container> */}

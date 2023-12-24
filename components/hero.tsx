@@ -29,7 +29,7 @@ const Hero = () => {
   if (isLoading) return <div>Loading...</div>;
 
   return (
-    <div className="grid grid-cols-12 gap-4 py-10 ">
+    <div className="grid grid-cols-11 gap-4 py-10 ">
       <UseModal title="" description="">
         {toggleLogin === "sing-in" ? (
           <LoginPage setToggleLogin={setToggleLogin} />
@@ -54,7 +54,7 @@ const Hero = () => {
           </Button>
         </div>
       </div>
-      <div className="flex  md:col-span-4 border justify-center items-center px-12 bg-white rounded-xl shadow-md">
+      <div className="flex  py-6 md:p-0 col-span-12 md:col-span-4 border justify-center items-center px-12 bg-white rounded-xl shadow-md">
         {!userId ? (
           <div className="flex flex-col gap-2 justify-center items-center">
             <Avatar>

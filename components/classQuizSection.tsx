@@ -24,7 +24,7 @@ const ClassQuizSection = ({ categories, title }: ClassQuizSectionProps) => {
           See more
         </Button>
       </div>
-      <div className="grid grid-cols-12 gap-3">
+      <div className="grid px-1 md:px-0 grid-cols-4 md:grid-cols-12 gap-3">
         {categories.map((item, i) => (
           <div key={i} className="col-span-2 ">
             <QuizCard categoryData={item} />

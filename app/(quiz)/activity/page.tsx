@@ -78,8 +78,8 @@ const ActivityPage = () => {
       <Tabs defaultValue="completed" className="">
         <div className="h-16 bg-[#A076CC]/30 ">
           <Container>
-            <div className="flex items-center gap-5 px-2 md:px-0">
-              <div>
+            <div className="flex items-center    gap-5 px-2 md:px-0">
+              <div className="hidden md:block">
                 <h1 className="text-3xl font-semibold text-[#b383e8]">
                   Activity
                 </h1>
