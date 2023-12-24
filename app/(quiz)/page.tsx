@@ -1,12 +1,11 @@
-import { Button } from "@/components/ui/button";
+import Hero from "@/components/hero";
 import Container from "@/components/ui/container";
 
 const page = () => {
   return (
     <div>
       <Container>
-        <h1>Page</h1>
-        <Button>fQuiz</Button>
+        <Hero />
       </Container>
     </div>
   );
