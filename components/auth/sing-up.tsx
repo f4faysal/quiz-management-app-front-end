@@ -136,7 +136,10 @@ const SingUp = ({ setToggleLogin }: SingUpProps) => {
               )}
             />
 
-            <Button type="submit" className="w-full mt-4">
+            <Button
+              type="submit"
+              className="w-full mt-4 bg-[#7C39C4] hover:bg-[#7C39C4]/80"
+            >
               Sing up
             </Button>
           </form>

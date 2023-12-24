@@ -1,10 +1,12 @@
 "use client";
 
+import { cn } from "@/lib/utils";
 import { onOpen } from "@/redux/features/modal/modalSlice";
 import { getUserInfo } from "@/services/auth.service";
 import { LogIn } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
+import { BsPlusCircle } from "react-icons/bs";
 import { useDispatch } from "react-redux";
 import SingUp from "./auth/sing-up";
 import LoginPage from "./auth/song-in";
@@ -44,8 +46,25 @@ const RootNavBar = () => {
         <div className=" hidden md:block">
           <MainNav className="mx-6" />
         </div>
-
         <div className="ml-auto flex items-center space-x-4">
+          {role === "admin" && (
+            <div className=" hidden md:block">
+              <Link
+                href={"/dashboard"}
+                className={cn(
+                  "text-sm font-medium transition-colors hover:text-[#A076CC] flex items-center justify-center gap-1 ",
+                  // pathname === `/create-quiz`
+                  //   ? "text-[#A076CC] dark:text-white font-bold"
+                  "text-muted-foreground"
+                )}
+              >
+                <span className="font-bold text-base">
+                  <BsPlusCircle />
+                </span>
+                Create Quiz
+              </Link>
+            </div>
+          )}
           {role ? (
             <Profile />
           ) : (

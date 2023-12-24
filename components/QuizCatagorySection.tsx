@@ -26,7 +26,7 @@ const QuizCatagorySection = ({ categories }: any) => {
       </div>
 
       <div className="grid grid-cols-4  md:grid-cols-12 gap-2 ">
-        {categories.map((category: { name: string; id: string }) => {
+        {categories?.map((category: { name: string; id: string }) => {
           return (
             <div
               key={category.id}

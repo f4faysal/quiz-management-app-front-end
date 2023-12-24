@@ -126,13 +126,40 @@ const LoginPage = ({ setToggleLogin }: LoginPageProps) => {
                 Forgot Password?
               </a>
             </div>
-            <Button type="submit" className="w-full mt-2">
+            <Button
+              type="submit"
+              className="w-full mt-2 bg-[#7C39C4] hover:bg-[#7C39C4]/80"
+            >
               Sign in
             </Button>
           </form>
           <p className="text-red-600 text-sm">{res}</p>
         </Form>
 
+        <div className="flex justify-center items-center ">
+          <Button
+            onClick={() =>
+              onSubmit({
+                email: "admin@gmail.com",
+                password: "123456",
+              })
+            }
+            variant={"link"}
+          >
+            Demo login (admin)
+          </Button>
+          <Button
+            onClick={() =>
+              onSubmit({
+                email: "performer@gmail.com",
+                password: "123456",
+              })
+            }
+            variant={"link"}
+          >
+            Demo login (performer)
+          </Button>
+        </div>
         <div className="flex justify-center items-center ">
           <p className="text-slate-400 text-sm">Don`t have an account?</p>
           <Button

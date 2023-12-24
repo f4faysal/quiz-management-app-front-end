@@ -7,9 +7,7 @@ import { useQuizQuery } from "@/redux/api/quizApi";
 
 const Start = ({ params }: any) => {
   console.log(params);
-
   const { data, isLoading } = useQuizQuery(params.start);
-
   console.log(data);
 
   if (isLoading) return <Loading />;

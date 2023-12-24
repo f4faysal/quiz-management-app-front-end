@@ -4,7 +4,6 @@ import Loading from "@/app/loading";
 import { Button } from "@/components/ui/button";
 import Container from "@/components/ui/container";
 import { useQuizzesQuery } from "@/redux/api/quizApi";
-import Link from "next/link";
 
 const QuizzzesPage = ({ params }: any) => {
   const { data, isLoading } = useQuizzesQuery({});
@@ -17,6 +16,7 @@ const QuizzzesPage = ({ params }: any) => {
 
   const handelQuixStart = (id: string) => {
     console.log(id);
+    window.location.href = `/quizzes/fQuiz/start/${id}`;
   };
 
   if (isLoading) return <Loading />;
@@ -43,15 +43,15 @@ const QuizzzesPage = ({ params }: any) => {
               <p className="text-xs">
                 Publish by: <span>{quiz?.createdBy?.name}</span>
               </p>
-              <Link href={`/quizzes/fQuiz/start/${quiz?.id}`}>
-                <Button
-                  onClick={() => handelQuixStart(quiz.id)}
-                  className="w-full bg-[#7C39C4] hover:bg-[#7C39C4]/80 "
-                  size={"sm"}
-                >
-                  Start Quiz
-                </Button>
-              </Link>
+              {/* <Link href={`/quizzes/fQuiz/start/${quiz?.id}`}> */}
+              <Button
+                onClick={() => handelQuixStart(quiz.id)}
+                className="w-full bg-[#7C39C4] hover:bg-[#7C39C4]/80 "
+                size={"sm"}
+              >
+                Start Quiz
+              </Button>
+              {/* </Link> */}
             </div>
           ))}
         </div>

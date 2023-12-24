@@ -1,5 +1,7 @@
 "use client";
 
+import { useAddQuizScoreMutation } from "@/redux/api/categoryApi";
+import { getUserInfo } from "@/services/auth.service";
 import {
   BadgeDollarSign,
   CheckSquare,
@@ -7,10 +9,15 @@ import {
   Quote,
   XSquare,
 } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Button } from "./ui/button";
 
 const StartQuiz = ({ quiz }: any) => {
+  const { userId } = getUserInfo() as any;
+
+  const router = useRouter();
+
   const [activeQuestion, setActiveQuestion] = useState(0);
 
   const [selectedAnswer, setSelectedAnswer] = useState<string | boolean>("");
@@ -23,6 +30,8 @@ const StartQuiz = ({ quiz }: any) => {
     correctAnswers: 0,
     wrongAnswers: 0,
   });
+
+  const [AddQuizScore] = useAddQuizScoreMutation();
 
   // const quiz = {
   //   id: "ce7cd0f5-9f05-4765-bdae-10ff81cc99fe",
@@ -121,6 +130,8 @@ const StartQuiz = ({ quiz }: any) => {
   const { questions } = quiz;
   const { text, options, answer } = questions[activeQuestion];
 
+  console.log(text);
+
   //   Select and check answer
   const onAnswerSelected = (answers: string, idx: any) => {
     setChecked(true);
@@ -135,13 +146,23 @@ const StartQuiz = ({ quiz }: any) => {
   };
 
   // Calculate score and increment to next question
-  const nextQuestion = () => {
+  const nextQuestion = async () => {
+    if (activeQuestion === questions.length - 1) {
+      const res = await AddQuizScore({
+        userId,
+        quizId: quiz.id,
+        score: result.score.toString(),
+      });
+
+      console.log(res);
+    }
+
     setSelectedAnswerIndex(null);
     setResult((prev) =>
       selectedAnswer
         ? {
             ...prev,
-            score: prev.score + 5,
+            score: prev.score + 10,
             correctAnswers: prev.correctAnswers + 1,
           }
         : {
@@ -163,12 +184,12 @@ const StartQuiz = ({ quiz }: any) => {
       <div>
         {!showResult ? (
           <div className=" ">
-            <h3 className="text-xl ">
-              <span className="text-[#af7feb]">
-                # {activeQuestion + 1}
-                <span>/{questions.length}</span>
-              </span>
-              <span className="font-bold"> Question :</span>
+            <p className="text-[#af7feb] text-xl pt-5">
+              # {activeQuestion + 1}
+              <span>/{questions.length}</span>
+            </p>
+            <h3 className="text-xl pb-5 ">
+              <span className="pr-3"> fQ :</span>
               <span className="font-semibold">
                 {" "}
                 {questions[activeQuestion].text}
@@ -190,7 +211,7 @@ const StartQuiz = ({ quiz }: any) => {
                 onClick={nextQuestion}
                 className="bg-[#7C39C4] hover:bg-[#7C39C4]/80 w-full"
               >
-                {activeQuestion === text.length - 1 ? "Finish" : "Next"}
+                {activeQuestion === questions.length - 1 ? "Finish" : "Next"}
               </Button>
             ) : (
               <Button
@@ -198,7 +219,7 @@ const StartQuiz = ({ quiz }: any) => {
                 disabled
                 className="bg-[#7C39C4] hover:bg-[#7C39C4]/80 w-full"
               >
-                {activeQuestion === text.length - 1 ? "Finish" : "Next"}
+                {activeQuestion === questions.length - 1 ? "Finish" : "Next"}
               </Button>
             )}
           </div>
@@ -245,7 +266,9 @@ const StartQuiz = ({ quiz }: any) => {
 
             <Button
               className="col-span-3 bg-[#7C39C4] hover:bg-[#7C39C4]/80"
-              onClick={() => window.location.reload()}
+              onClick={() => {
+                router.push("/leader-board");
+              }}
             >
               Restart
             </Button>

@@ -13,6 +13,7 @@ const QuizPage = ({ params }: any) => {
   console.log(data);
 
   const handelQuixStart = (id: string) => {
+    window.location.href = `/quizzes/fQuiz/start/${id}`;
     console.log(id);
   };
 
@@ -42,15 +43,15 @@ const QuizPage = ({ params }: any) => {
                   <p className="text-xs">
                     Publish by: <span>{quiz?.createdBy?.name}</span>
                   </p>
-                  <Link href={`/quizzes/fQuiz/start/${quiz?.id}`}>
-                    <Button
-                      onClick={() => handelQuixStart(quiz.id)}
-                      className="w-full bg-[#7C39C4] hover:bg-[#7C39C4]/80"
-                      size={"sm"}
-                    >
-                      Start Quiz
-                    </Button>
-                  </Link>
+                  {/* <Link href={`/quizzes/fQuiz/start/${quiz?.id}`}> */}
+                  <Button
+                    onClick={() => handelQuixStart(quiz.id)}
+                    className="w-full bg-[#7C39C4] hover:bg-[#7C39C4]/80"
+                    size={"sm"}
+                  >
+                    Start Quiz
+                  </Button>
+                  {/* </Link> */}
                 </div>
               ))}
             </div>
