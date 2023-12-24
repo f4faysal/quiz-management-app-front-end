@@ -1,3 +1,4 @@
+import QuizCatagorySection from "@/components/QuizCatagorySection";
 import ClassQuizSection from "@/components/classQuizSection";
 import Hero from "@/components/hero";
 import Container from "@/components/ui/container";
@@ -8,6 +9,9 @@ const page = () => {
     <div>
       <Container>
         <Hero />
+
+        <QuizCatagorySection />
+
         <ClassQuizSection categories={nodejs} title="Mathematics" />
         <ClassQuizSection
           categories={reactjs}
