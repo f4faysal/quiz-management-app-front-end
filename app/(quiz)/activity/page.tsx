@@ -2,10 +2,12 @@
 
 import Loading from "@/app/loading";
 import StartQuiz from "@/components/startQuiz";
+import { Button } from "@/components/ui/button";
 import Container from "@/components/ui/container";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useQuizzesQuery } from "@/redux/api/quizApi";
 import { Hourglass, PlusSquare, TimerReset } from "lucide-react";
+import Image from "next/image";
 import { useState } from "react";
 const ActivityPage = () => {
   const { data, isLoading } = useQuizzesQuery({});
@@ -101,8 +103,42 @@ const ActivityPage = () => {
 
         <div className="mt-10 px-2 md:px-0">
           <Container>
-            <TabsContent value="running">Running</TabsContent>
-            <TabsContent value="completed">completed</TabsContent>
+            <TabsContent value="running">
+              <div className="flex flex-col justify-center items-center gap-2">
+                <h1 className="text-2xl">
+                  It looks like you don&apos;t have any games in progress..
+                </h1>
+
+                <Image
+                  src="/activity.png"
+                  width={1000}
+                  height={1000}
+                  alt="logo"
+                  className="w-[300px] h-[300px]"
+                />
+                <Button className="w-[200px] bg-[#7C39C4] hover:bg-[#7C39C4]/80">
+                  Find a Quiz
+                </Button>
+              </div>
+            </TabsContent>
+            <TabsContent value="completed">
+              <div className="flex flex-col justify-center items-center gap-2">
+                <h1 className="text-2xl">
+                  Looks like you haven&apos;t played a quiz yet.
+                </h1>
+
+                <Image
+                  src="/activity.png"
+                  width={1000}
+                  height={1000}
+                  alt="logo"
+                  className="w-[300px] h-[300px]"
+                />
+                <Button className="w-[200px] bg-[#7C39C4] hover:bg-[#7C39C4]/80">
+                  Find a Quiz
+                </Button>
+              </div>
+            </TabsContent>
             <TabsContent value="created">
               <StartQuiz />
             </TabsContent>
