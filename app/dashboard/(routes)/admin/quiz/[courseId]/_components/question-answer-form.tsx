@@ -21,18 +21,13 @@ import { useUpdateQuizQuestionMutation } from "@/redux/api/quizApi";
 
 interface titleFormProps {
   initialData: any;
-  filedName: string;
 }
 
 const formSchema = z.object({
-  text: z.string().min(1),
   answer: z.string().min(1),
 });
 
-export const QuestionsTitleForm = ({
-  initialData,
-  filedName,
-}: titleFormProps) => {
+export const QuestionsAnswerForm = ({ initialData }: titleFormProps) => {
   const [isEditing, setIsEditing] = useState(false);
 
   const [UpdateQuizQuestion] = useUpdateQuizQuestionMutation();
@@ -44,7 +39,6 @@ export const QuestionsTitleForm = ({
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      text: initialData?.text,
       answer: initialData?.answer,
     },
   });
@@ -65,24 +59,20 @@ export const QuestionsTitleForm = ({
   return (
     <div className=" border bg-slate-100 rounded-md p-4">
       <div className="font-medium flex items-center justify-between">
-        {filedName === "text" ? "Question" : "Answer"}
+        Answer
         <Button onClick={toggleEdit} variant="ghost">
           {isEditing ? (
             <>Cancel</>
           ) : (
             <>
               <Pencil className="h-4 w-4 mr-2" />
-              {filedName === "text" ? "Edit question" : "Edit answer"}
+              Edit answer
             </>
           )}
         </Button>
       </div>
 
-      {!isEditing && (
-        <p className="text-sm mt-2">
-          {filedName === "text" ? initialData.text : initialData.answer}
-        </p>
-      )}
+      {!isEditing && <p className="text-sm mt-2">{initialData.answer}</p>}
 
       {isEditing && (
         <Form {...form}>
@@ -92,17 +82,13 @@ export const QuestionsTitleForm = ({
           >
             <FormField
               control={form.control}
-              name={`${filedName === "text" ? "text" : "answer"}`}
+              name="answer"
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
                     <Input
                       disabled={isSubmitting}
-                      placeholder={`e.g. ${
-                        filedName === "text"
-                          ? "Question title"
-                          : "Question answer"
-                      }`}
+                      placeholder={`e.g. ${"Question answer"}`}
                       {...field}
                     />
                   </FormControl>

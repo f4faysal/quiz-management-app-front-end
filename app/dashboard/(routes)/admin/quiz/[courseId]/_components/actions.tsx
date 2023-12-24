@@ -1,6 +1,5 @@
 "use client";
 
-import axios from "axios";
 import { Trash } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -9,21 +8,24 @@ import toast from "react-hot-toast";
 import { ConfirmModal } from "@/components/modals/confirm-modal";
 import { Button } from "@/components/ui/button";
 
-import { useUpdateQuizMutation } from "@/redux/api/quizApi";
+import {
+  useDeleteQuizMutation,
+  useUpdateQuizMutation,
+} from "@/redux/api/quizApi";
 import { onClose, onOpen } from "@/redux/features/modal/modalSlice";
 import { useDispatch } from "react-redux";
 
 interface ActionsProps {
   disabled: boolean;
-  courseId: string;
+  quizId: string;
   isPublished: boolean;
 }
 
-export const Actions = ({ disabled, courseId, isPublished }: ActionsProps) => {
+export const Actions = ({ disabled, quizId, isPublished }: ActionsProps) => {
   const router = useRouter();
 
+  const [deleteQuiz] = useDeleteQuizMutation();
   const [updateCourse] = useUpdateQuizMutation();
-
   const dispatch = useDispatch();
 
   const handleOpenModal = () => {
@@ -40,14 +42,14 @@ export const Actions = ({ disabled, courseId, isPublished }: ActionsProps) => {
 
       if (isPublished) {
         await updateCourse({
-          id: courseId,
+          id: quizId,
           data: {
             isPublished: false,
           },
         });
       } else {
         await updateCourse({
-          id: courseId,
+          id: quizId,
           data: {
             isPublished: true,
           },
@@ -55,7 +57,6 @@ export const Actions = ({ disabled, courseId, isPublished }: ActionsProps) => {
         toast.success("Course published");
         dispatch(onClose());
       }
-
       router.refresh();
     } catch {
       toast.error("Something went wrong");
@@ -67,12 +68,10 @@ export const Actions = ({ disabled, courseId, isPublished }: ActionsProps) => {
   const onDelete = async () => {
     try {
       setIsLoading(true);
-
-      await axios.delete(`/api/courses/${courseId}`);
-
-      toast.success("Course deleted");
+      await deleteQuiz(quizId);
+      router.push(`/dashboard/admin/quiz`);
+      toast.success("Quiz deleted");
       router.refresh();
-      router.push(`/dashboard/teacher/courses`);
     } catch {
       toast.error("Something went wrong");
     } finally {

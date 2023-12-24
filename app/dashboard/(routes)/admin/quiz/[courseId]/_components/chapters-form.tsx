@@ -20,10 +20,7 @@ import { Input } from "@/components/ui/input";
 
 import { cn } from "@/lib/utils";
 
-import {
-  useCreateQuizQuestionMutation,
-  useGetLastQuizQuestionsQuery,
-} from "@/redux/api/quizApi";
+import { useCreateQuizQuestionMutation } from "@/redux/api/quizApi";
 import { onOpen } from "@/redux/features/modal/modalSlice";
 import { useDispatch } from "react-redux";
 import { ChaptersList } from "./chapters-list";
@@ -45,7 +42,7 @@ export const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
   const [isCreating, setIsCreating] = useState(false);
   const [isUpdating, setIsUpdating] = useState(false);
   const [editId, setEditId] = useState<string>("");
-  const { data, isLoading } = useGetLastQuizQuestionsQuery(initialData.id);
+  // const { data, isLoading } = useGetLastQuizQuestionsQuery(initialData.id);
   const [CreateQuizQuestion] = useCreateQuizQuestionMutation();
   const toggleCreating = () => {
     setIsCreating((current) => !current);
@@ -94,9 +91,9 @@ export const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
     dispatch(onOpen());
   };
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+  // if (isLoading) {
+  //   return <div>Loading...</div>;
+  // }
 
   return (
     <div className="relative mt-6 border bg-slate-100 rounded-md p-4">

@@ -46,7 +46,7 @@ const CourseIdPage = ({ params }: { params: { courseId: string } }) => {
           </div>
           <Actions
             disabled={!isComplete}
-            courseId={params?.courseId}
+            quizId={params?.courseId}
             isPublished={quiz?.isPublished}
           />
         </div>

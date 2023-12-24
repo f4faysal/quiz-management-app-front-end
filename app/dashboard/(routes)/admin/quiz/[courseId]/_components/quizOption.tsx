@@ -10,6 +10,7 @@ import {
 } from "@/redux/api/quizApi";
 import React from "react";
 import toast from "react-hot-toast";
+import { QuestionsAnswerForm } from "./question-answer-form";
 import { OptionsForm } from "./question-option-form";
 import { QuestionsTitleForm } from "./question-title-form";
 
@@ -56,7 +57,7 @@ const QuizOption: React.FC<QuizOptionProps> = ({ questionId }) => {
           </div>
         ))}
       </div>
-      <QuestionsTitleForm initialData={data} filedName="answer" />
+      <QuestionsAnswerForm initialData={data} />
       <div className="my-2">
         <Button
           onClick={() => handelPublished()}
