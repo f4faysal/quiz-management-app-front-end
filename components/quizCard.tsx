@@ -31,7 +31,7 @@ const QuizCard = ({ categoryData }: QuizCardProps) => {
       </div>
       <div className="p-2">
         <p className="text-sm ">{grade}</p>
-        <h3 className="text-base font-bold">{title}</h3>
+        <h3 className="text-base ">{title}</h3>
       </div>
     </div>
   );
