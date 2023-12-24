@@ -55,6 +55,8 @@ export const quizApi = baseApi.injectEndpoints({
       invalidatesTags: [tagTypes.quiz],
     }),
 
+    //---------------------------
+
     // quiz questions
     createQuizQuestion: build.mutation({
       query: (payload) => ({

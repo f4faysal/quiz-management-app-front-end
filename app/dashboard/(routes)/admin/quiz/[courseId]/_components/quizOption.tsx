@@ -27,16 +27,20 @@ const QuizOption: React.FC<QuizOptionProps> = ({ questionId }) => {
   const completedFields = requiredFields?.filter(Boolean).length;
   const completionText = `(${completedFields}/${totalFields})`;
 
-  const handelUpdlish = async () => {
-    await UpdateQuizQuestion({ id: data?.id, data: { isPublished: true } });
+  const handelPublished = async () => {
+    if (data?.isPublished) {
+      await UpdateQuizQuestion({ id: data?.id, data: { isPublished: false } });
+    } else {
+      await UpdateQuizQuestion({ id: data?.id, data: { isPublished: true } });
+    }
+
     toast.success("Quiz published");
     window.location.reload();
   };
-
   if (isLoading) return <div>Loading...</div>;
 
   return (
-    <UseModal title={data?.text} description="">
+    <UseModal title="Create Quiz Questions" description={data?.text}>
       {!data?.isPublished && (
         <Banner
           label={`Complete all fields ${completionText}. This quiz questions is unpublished publish.`}
@@ -55,10 +59,10 @@ const QuizOption: React.FC<QuizOptionProps> = ({ questionId }) => {
       <QuestionsTitleForm initialData={data} filedName="answer" />
       <div className="my-2">
         <Button
-          onClick={() => handelUpdlish()}
+          onClick={() => handelPublished()}
           disabled={completedFields !== 3}
         >
-          Publish
+          {data?.isPublished ? "Unpublished" : "Published"}
         </Button>
       </div>
     </UseModal>

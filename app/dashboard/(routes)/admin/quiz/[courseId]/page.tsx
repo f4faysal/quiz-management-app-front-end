@@ -5,27 +5,27 @@ import { Banner } from "@/components/banner";
 import { IconBadge } from "@/components/icon-badge";
 
 import { useQuizQuery } from "@/redux/api/quizApi";
-import { getUserInfo } from "@/services/auth.service";
 import { Actions } from "./_components/actions";
 import Category from "./_components/category";
 import { ChaptersForm } from "./_components/chapters-form";
 import { TitleForm } from "./_components/title-form";
 
 const CourseIdPage = ({ params }: { params: { courseId: string } }) => {
-  const { userId }: any = getUserInfo();
   const { data, isLoading } = useQuizQuery(params.courseId);
-
-  console.log(data);
   const quiz = data;
-  const requiredFields = [quiz?.title, quiz?.category?.name, quiz?.questions];
+
+  const requiredFields = [
+    quiz?.title,
+    quiz?.category?.name,
+    quiz?.questions.every((question: any) => question.isPublished),
+  ];
 
   const totalFields = requiredFields?.length;
   const completedFields = requiredFields?.filter(Boolean).length;
 
   const completionText = `(${completedFields}/${totalFields})`;
 
-  // const isComplete = requiredFields.every(Boolean);
-  const isComplete = false;
+  const isComplete = requiredFields.every(Boolean);
 
   if (isLoading) {
     return <div>Loading...</div>;

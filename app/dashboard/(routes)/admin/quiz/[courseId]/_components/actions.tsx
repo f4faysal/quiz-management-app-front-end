@@ -84,11 +84,12 @@ export const Actions = ({ disabled, courseId, isPublished }: ActionsProps) => {
     <div className="flex items-center gap-x-2">
       <Button
         onClick={onClick}
+        className="bg-green-800 hover:bg-green-600 text-white hover:text-white"
         disabled={disabled || isLoading}
         variant="outline"
         size="sm"
       >
-        {isPublished ? "Unpublish" : "Publish"}
+        {isPublished ? "Unpublished" : "Publish"}
       </Button>
       <ConfirmModal onConfirm={onDelete}>
         <Button size="sm" disabled={isLoading}>
