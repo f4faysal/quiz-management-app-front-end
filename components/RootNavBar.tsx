@@ -22,7 +22,7 @@ const RootNavBar = () => {
   const [toggleLogin, setToggleLogin] = useState<string>("sing-in");
 
   return (
-    <nav className="border-b lg:px-16 xl:px-20 sticky top-0">
+    <nav className="border-b lg:px-16 xl:px-20 sticky top-0 z-50 bg-white/80">
       <UseModal title="" description="">
         {toggleLogin === "sing-in" ? (
           <LoginPage setToggleLogin={setToggleLogin} />

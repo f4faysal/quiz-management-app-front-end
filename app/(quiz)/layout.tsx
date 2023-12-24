@@ -1,3 +1,4 @@
+import Footer from "@/components/Footer";
 import RootNavBar from "@/components/rootNavBar";
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
@@ -5,6 +6,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
     <div className="h-full">
       <RootNavBar />
       <main className="p-1">{children}</main>
+      <Footer />
     </div>
   );
 };
