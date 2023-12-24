@@ -1,7 +1,6 @@
 "use client";
 
 import Loading from "@/app/loading";
-import StartQuiz from "@/components/startQuiz";
 import { Button } from "@/components/ui/button";
 import Container from "@/components/ui/container";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -139,9 +138,7 @@ const ActivityPage = () => {
                 </Button>
               </div>
             </TabsContent>
-            <TabsContent value="created">
-              <StartQuiz />
-            </TabsContent>
+            <TabsContent value="created">hello</TabsContent>
           </Container>
         </div>
       </Tabs>

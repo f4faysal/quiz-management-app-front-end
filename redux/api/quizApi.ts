@@ -20,13 +20,6 @@ export const quizApi = baseApi.injectEndpoints({
         url: `${quiz_url}`,
         method: "GET",
       }),
-      transformResponse: (response, meta) => {
-        return {
-          quiz: response,
-          meta,
-        };
-      },
-
       providesTags: [tagTypes.quiz],
     }),
     // quiz

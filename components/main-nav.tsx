@@ -35,7 +35,7 @@ export function MainNav({
 
     {
       href: `/class`,
-      label: "Classes",
+      label: "Quizzes",
       active: pathname === `/class`,
       icon: <PiUsersThreeDuotone />,
     },
