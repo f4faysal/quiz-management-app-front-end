@@ -48,7 +48,7 @@ const QuizOption: React.FC<QuizOptionProps> = ({ questionId }) => {
         />
       )}
 
-      <QuestionsTitleForm initialData={data} filedName="text" />
+      <QuestionsTitleForm initialData={data} />
       <OptionsForm initialData={data} />
       <div className="grid grid-cols-2 gap-2 my-2">
         {data?.options.map((option: any, i: any) => (
