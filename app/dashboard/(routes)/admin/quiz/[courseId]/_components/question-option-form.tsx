@@ -39,7 +39,10 @@ export const OptionsForm = ({ initialData }: OptionsFormProps) => {
   const form = useForm<z.infer<typeof optionsFormSchema>>({
     resolver: zodResolver(optionsFormSchema),
   });
-  const { isSubmitting, isValid } = form.formState;
+
+  const { formState, reset } = form;
+
+  const { isSubmitting, isValid } = formState;
   const isEditingOptions = initialData?.options?.length >= 4;
   const onSubmit = async (values: z.infer<typeof optionsFormSchema>) => {
     const arr = [...initialData.options, values.options];
@@ -48,7 +51,7 @@ export const OptionsForm = ({ initialData }: OptionsFormProps) => {
         id: initialData?.id,
         data: { options: arr },
       });
-
+      reset();
       toast.success("Options updated");
       toggleEdit();
       router.refresh();
