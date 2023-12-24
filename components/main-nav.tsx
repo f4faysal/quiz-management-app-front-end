@@ -68,9 +68,9 @@ export function MainNav({
               key={route.href}
               href={route.href}
               className={cn(
-                "text-sm font-medium transition-colors hover:text-primary flex items-center justify-center gap-1 ",
+                "text-sm font-medium transition-colors hover:text-[#A076CC] flex items-center justify-center gap-1 ",
                 route.active
-                  ? "text-black dark:text-white font-bold"
+                  ? "text-[#A076CC] dark:text-white font-bold"
                   : "text-muted-foreground"
               )}
             >
@@ -84,9 +84,9 @@ export function MainNav({
               key={route.href}
               href={route.href}
               className={cn(
-                "text-sm font-medium transition-colors hover:text-primary flex items-center justify-center gap-1 ",
+                "text-sm font-medium transition-colors hover:text-[#A076CC] flex items-center justify-center gap-1 ",
                 route.active
-                  ? "text-black dark:text-white font-bold"
+                  ? "text-[#A076CC] dark:text-white font-bold"
                   : "text-muted-foreground"
               )}
             >
@@ -99,9 +99,9 @@ export function MainNav({
               key={route.href}
               href={route.href}
               className={cn(
-                "text-sm font-medium transition-colors hover:text-primary flex items-center justify-center gap-1 ",
+                "text-sm font-medium transition-colors hover:text-[#A076CC] flex items-center justify-center gap-1 ",
                 route.active
-                  ? "text-black dark:text-white font-bold "
+                  ? "text-[#A076CC] dark:text-white font-bold "
                   : "text-muted-foreground"
               )}
             >

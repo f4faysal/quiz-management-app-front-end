@@ -36,7 +36,7 @@ const RootNavBar = () => {
       <div className="flex h-16 items-center px-4">
         <Link href="/">
           {/* <Image src=" " width={100} height={100} alt="logo" /> */}
-          <h1 className="text-3xl font-bold">fQuiz</h1>
+          <h1 className="text-3xl font-bold text-[#A076CC]">fQuiz</h1>
         </Link>
 
         <div className=" pl-6 w-72 hidden md:flex">

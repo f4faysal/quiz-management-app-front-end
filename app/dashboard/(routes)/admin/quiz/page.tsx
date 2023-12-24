@@ -6,6 +6,7 @@ import { useQuizzesQuery } from "@/redux/api/quizApi";
 import { getUserInfo } from "@/services/auth.service";
 import { columns } from "./_components/columns";
 import { DataTable } from "./_components/data-table";
+import Loading from "@/app/loading";
 
 const CoursesPage = () => {
   const { userId }: any = getUserInfo();
@@ -27,7 +28,7 @@ const CoursesPage = () => {
   // });
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return  <Loading/>
   }
 
   return (

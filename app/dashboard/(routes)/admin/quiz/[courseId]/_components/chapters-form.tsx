@@ -92,7 +92,7 @@ export const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
   };
 
   // if (isLoading) {
-  //   return <div>Loading...</div>;
+  //   return  <Loading/>
   // }
 
   return (

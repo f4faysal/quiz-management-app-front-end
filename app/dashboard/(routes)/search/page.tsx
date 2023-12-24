@@ -4,10 +4,9 @@ import { redirect } from "next/navigation";
 // import { getCourses } from "@/actions/get-courses";
 import { SearchInput } from "@/components/search-input";
 
-import { CoursesList } from "@/components/courses-list";
-
 import { getUserInfo } from "@/services/auth.service";
 import { Categories } from "./_components/categories";
+import Loading from "@/app/loading";
 
 interface SearchPageProps {
   searchParams: {
@@ -47,7 +46,7 @@ const SearchPage = ({ searchParams }: SearchPageProps) => {
   console.log(courses);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 
   return (
@@ -57,7 +56,7 @@ const SearchPage = ({ searchParams }: SearchPageProps) => {
       </div>
       <div className="p-6 space-y-4">
         <Categories items={[]} />
-        <CoursesList items={courses} />
+        {/* <CoursesList items={courses} /> */}
       </div>
     </>
   );

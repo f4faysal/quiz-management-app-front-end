@@ -13,6 +13,7 @@ import toast from "react-hot-toast";
 import { QuestionsAnswerForm } from "./question-answer-form";
 import { OptionsForm } from "./question-option-form";
 import { QuestionsTitleForm } from "./question-title-form";
+import Loading from "@/app/loading";
 
 interface QuizOptionProps {
   questionId: string;
@@ -38,7 +39,9 @@ const QuizOption: React.FC<QuizOptionProps> = ({ questionId }) => {
     toast.success("Quiz published");
     window.location.reload();
   };
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) {
+    return  <Loading/>
+  }
 
   return (
     <UseModal title="Create Quiz Questions" description={data?.text}>

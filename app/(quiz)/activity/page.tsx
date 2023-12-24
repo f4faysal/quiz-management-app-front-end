@@ -1,5 +1,6 @@
 "use client";
 
+import Loading from "@/app/loading";
 import StartQuiz from "@/components/startQuiz";
 import Container from "@/components/ui/container";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -67,7 +68,7 @@ const ActivityPage = () => {
   };
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 
   return (

@@ -9,6 +9,7 @@ import { Actions } from "./_components/actions";
 import Category from "./_components/category";
 import { ChaptersForm } from "./_components/chapters-form";
 import { TitleForm } from "./_components/title-form";
+import Loading from "@/app/loading";
 
 const CourseIdPage = ({ params }: { params: { courseId: string } }) => {
   const { data, isLoading } = useQuizQuery(params.courseId);
@@ -28,7 +29,7 @@ const CourseIdPage = ({ params }: { params: { courseId: string } }) => {
   const isComplete = requiredFields.every(Boolean);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return  <Loading/>
   }
 
   return (
